@@ -3,7 +3,7 @@ import { isUndefined } from "util";
 import Moment from "moment";
 
 import { Article } from "../../model";
-import { get } from "../../lib/general/request";
+import { get, fromXAgo } from "../../lib/general";
 
 const daysOfWeek = [
   "Sunday",
@@ -40,10 +40,7 @@ const getDate = async (cheerio: CheerioStatic): Promise<Date> => {
   if (daysOfWeek.indexOf(dateArray[0].slice(0, -1)) != -1) {
     return Moment(dateArray.slice(1).join(" "), "MMMM DD, YYYY").toDate();
   } else {
-    let units: Moment.unitOfTime.DurationConstructor = dateArray[2] as Moment.unitOfTime.DurationConstructor;
-    return Moment()
-      .subtract(dateArray[1], units)
-      .toDate();
+    return fromXAgo(parseInt(dateArray[1], 10), dateArray[2]);
   }
 };
 

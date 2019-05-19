@@ -1,6 +1,6 @@
 import Express from "express";
 
-import InfoRoutes from "./src/route/info";
+import Router from "./src/route";
 import bodyParser = require("body-parser");
 
 let app = Express();
@@ -11,5 +11,5 @@ app.get(
     res.send({ date: new Date() });
   },
 );
-app.use("/info", InfoRoutes);
+app.use("/info", Router.InfoRouter);
 app.listen(3000);
