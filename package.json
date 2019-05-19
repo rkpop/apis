@@ -14,7 +14,8 @@
     }
   },
   "scripts": {
-    "dev": "nodemon index.ts"
+    "dev": "nodemon index.ts",
+    "build": "tsc"
   },
   "lint-staged": {
     "linters": {
